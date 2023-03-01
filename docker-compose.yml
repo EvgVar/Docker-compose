@@ -1,0 +1,17 @@
+version: "3"
+services:
+  mysqlDB:
+    image: mysql
+    container_name: "mysql-db"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=crud_db
+  app:
+    build: ./
+    container_name: "java-app"
+    ports:
+      - "8080:8080"
+    stdin_open: true
+    tty: true
+    depends_on:
+      - mysqlDB
